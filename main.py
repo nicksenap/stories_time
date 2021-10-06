@@ -20,7 +20,7 @@ def main():
     filename = transcribe_file_aws("audio.wav")
     # filename = "audio.wav-transcribe.json"
     download_file(bucket_output_name, filename, filename)
-    os.remove(filename)
+    os.remove("audio.wav")
 
 
 def create_bucket_if_not_exist(bucket_name):
