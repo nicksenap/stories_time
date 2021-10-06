@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 from helpers.youtube_helper import download_video
 from helpers.aws_helper import (upload_file,
                                 transcribe_file_aws,
@@ -19,6 +20,7 @@ def main():
     filename = transcribe_file_aws("audio.wav")
     # filename = "audio.wav-transcribe.json"
     download_file(bucket_output_name, filename, filename)
+    os.remove(filename)
 
 
 def create_bucket_if_not_exist(bucket_name):

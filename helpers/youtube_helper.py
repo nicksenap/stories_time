@@ -1,4 +1,5 @@
 import youtube_dl
+import os
 
 
 class MyLogger(object):
@@ -17,6 +18,17 @@ def my_hook(d):
         print('Done downloading, now converting ...')
 
 
+def my_progress_hook(d):
+    if d['status'] == 'finished':
+        file_tuple = os.path.split(os.path.abspath(d['filename']))
+        print("Done downloading {}".format(file_tuple[1]))
+    if d['status'] == 'downloading':
+        p = d['_percent_str']
+        p = p.replace('%', '')
+        # self.progress.setValue(float(p))
+        print(d['filename'], d['_percent_str'], d['_eta_str'])
+
+
 ydl_opts = {
     'format': 'bestaudio/best',
     'no_check_certificate': True,
@@ -28,7 +40,7 @@ ydl_opts = {
         'preferredquality': '192',
     }],
     'logger': MyLogger(),
-    'progress_hooks': [my_hook],
+    'progress_hooks': [my_progress_hook],
 }
 
 
