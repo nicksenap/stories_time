@@ -6,14 +6,20 @@ import time
 import json
 
 region_name = 'eu-west-1'
-sandbox = boto3.session.Session(profile_name='Dev', region_name=region_name)
-bucket_input_name = "transcribe-input-bucket-0001"
-bucket_output_name = "transcribe-output-bucket-0001"
+sandbox = boto3.session.Session(
+    profile_name='Sandbox', region_name=region_name)
+bucket_input_name = "transcribe-input-bucket-000001"
+bucket_output_name = "transcribe-output-bucket-000001"
 
 
 def unique_timestamp():
     time.sleep(0.001)
     return str(round(time.time() * 1000))
+
+
+def delete_file(bucket_name, filename):
+    s3 = sandbox.client('s3')
+    s3.delete_object(Bucket=bucket_name, Key=filename)
 
 
 def download_file(bucket_name, filename, local_filename):

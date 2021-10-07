@@ -46,4 +46,9 @@ ydl_opts = {
 
 def download_video(url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(url, download=False)
+        video_url = info_dict.get("url", None)
+        video_id = info_dict.get("id", None)
+        video_title = info_dict.get('title', None)
         ydl.download([url])
+        return video_url, video_id, video_title
