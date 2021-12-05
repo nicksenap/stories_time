@@ -1,5 +1,5 @@
 # ✨Story time for abbie✨
-Converting story oriented youtube video to transcription.
+Converting story oriented youtube video to transcription using [aws transcribe](https://aws.amazon.com/transcribe/).
 
 ## To run the project
 To restore dependency
