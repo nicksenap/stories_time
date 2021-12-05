@@ -1,4 +1,4 @@
-# 💛 Story time for abbie 💛
+# ✨Story time for abbie✨
 Converting story oriented youtube video to transcription.
 
 ## To run the project
